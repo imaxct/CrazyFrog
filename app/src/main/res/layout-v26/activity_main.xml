@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    tools:context="me.maxct.changer.MainActivity">
+
+    <EditText
+        android:id="@+id/inputClover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:width="200dp"
+        />
+
+    <Button
+        android:id="@+id/btnChangeClover"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_change_clover"
+        app:layout_constraintLeft_toRightOf="@id/inputClover"
+        />
+
+    <EditText
+        android:id="@+id/inputTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:inputType="number"
+        android:width="200dp"
+        app:layout_constraintTop_toBottomOf="@+id/inputClover" />
+
+    <Button
+        android:id="@+id/btnChangeTicket"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_change_ticket"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toRightOf="@id/inputTicket"
+        app:layout_constraintTop_toBottomOf="@+id/inputClover" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Changer</string>
+    <string name="btn_test">测试按钮</string>
+    <string name="btn_change_clover">修改三叶草</string>
+    <string name="btn_change_ticket">修改抽奖券</string>
+</resources>
