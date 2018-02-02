@@ -19,7 +19,7 @@ import java.io.IOException
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        val requestWriteStorage = 0x00000010
+        const val requestWriteStorage = 0x00000010
         val filePath = Environment.getExternalStorageDirectory().toString() + File.separator + "Android/data/jp.co.hit_point.tabikaeru/files/Tabikaeru.sav"
         var writable = false
     }
@@ -82,11 +82,16 @@ class MainActivity : AppCompatActivity() {
 
         val arr = readFile()
 
+        if (arr.isEmpty()) {
+            return
+        }
+
         //修改数目
 
         arr[25] = changed[0]
         arr[24] = changed[1]
         arr[23] = changed[2]
+        arr[22] = changed[3]
 
         writeFile(arr)
         //Log.d("changer", arr.joinToString(separator = ",") { byte -> String.format("%02x", byte) })
@@ -105,8 +110,14 @@ class MainActivity : AppCompatActivity() {
 
         val arr = readFile()
 
+        if (arr.isEmpty()) {
+            return
+        }
+
         arr[29] = changed[0]
         arr[28] = changed[1]
+        arr[27] = changed[2]
+        arr[26] = changed[3]
 
         writeFile(arr)
 
