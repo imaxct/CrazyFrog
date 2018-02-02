@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         btnChangeClover.setOnClickListener {
             if (inputClover.text.isNullOrBlank()) {
                 showToast("未输入数量")
@@ -43,8 +42,8 @@ class MainActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (cloverNumber < 0 || cloverNumber > 0xffffffff) {
-                showToast("三叶草数值超过限制")
+            if (cloverNumber < 0 || cloverNumber > 0xF423F) {
+                showToast("三叶草数值超过限制(0-999999)")
                 return@setOnClickListener
             } else {
                 changeClover(cloverNumber)
@@ -63,8 +62,8 @@ class MainActivity : AppCompatActivity() {
                 showToast("请输入数字")
                 return@setOnClickListener
             }
-            if (ticketNumber < 0 || ticketNumber > 0xff) {
-                showToast("奖券数值超过限制")
+            if (ticketNumber < 0 || ticketNumber > 0x3e7) {
+                showToast("奖券数值超过限制(0-999)")
                 return@setOnClickListener
             } else {
                 changeTicket(ticketNumber)
@@ -73,17 +72,72 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun changeClover(number: Int) {
+
         if (!writable) {
             requestPermission()
             return
         }
 
-        /*val tmp = numberToByteArray(number)
+        val changed = numberToByteArray(number)
 
-        val ss = tmp.joinToString(separator = ",")
+        val arr = readFile()
 
-        Log.d("changer", ss)*/
+        //修改数目
 
+        arr[25] = changed[0]
+        arr[24] = changed[1]
+        arr[23] = changed[2]
+
+        writeFile(arr)
+        //Log.d("changer", arr.joinToString(separator = ",") { byte -> String.format("%02x", byte) })
+
+        //Log.d("changer", changed.joinToString(separator = ",") { byte -> String.format("%02x", byte) })
+
+    }
+
+    private fun changeTicket(number: Int) {
+        if (!writable) {
+            requestPermission()
+            return
+        }
+
+        val changed = numberToByteArray(number)
+
+        val arr = readFile()
+
+        arr[29] = changed[0]
+        arr[28] = changed[1]
+
+        writeFile(arr)
+
+    }
+
+    private fun readFile(): ByteArray {
+        val f: File
+        try {
+            f = File(filePath)
+        } catch (e: RuntimeException) {
+            showToast("存档文件不存在")
+            return ByteArray(0)
+        }
+
+        val fis = FileInputStream(f)
+
+        val arr = ByteArray(fis.available())
+
+        try {
+            fis.read(arr)
+        } catch (e: IOException) {
+            showToast("读取存档文件错误")
+            return ByteArray(0)
+        } finally {
+            fis.close()
+        }
+
+        return arr
+    }
+
+    private fun writeFile(arr: ByteArray) {
         val f: File
         try {
             f = File(filePath)
@@ -92,45 +146,16 @@ class MainActivity : AppCompatActivity() {
             showToast("存档文件不存在")
             return
         }
-        val fis = FileInputStream(f)
-
-        val arr = ByteArray(fis.available())
-        try {
-            fis.read(arr)
-        } catch (e: IOException) {
-            showToast("读取存档文件错误")
-            return
-        } finally {
-            fis.close()
-        }
-
-        /*
-        修改数目
         val fos = FileOutputStream(f)
         try {
-            arr[25] = 0xff.toByte()
             fos.write(arr)
-        } catch (e : IOException) {
+        } catch (e: IOException) {
             showToast("写入文件错误")
             return
         } finally {
             fos.close()
         }
-        */
-
-
-        var s = ""
-        arr.map { t -> s += String.format("%02x", t) }
-        Log.d("changer", s)
-        Log.d("changer", arr.joinToString(","))
-
-    }
-
-    private fun changeTicket(number: Number) {
-        if (!writable) {
-            requestPermission()
-            return
-        }
+        showToast("修改成功")
     }
 
     private fun showToast(str: String) {
@@ -147,6 +172,8 @@ class MainActivity : AppCompatActivity() {
                     arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
                     requestWriteStorage
             )
+        } else {
+            writable = true
         }
     }
 
