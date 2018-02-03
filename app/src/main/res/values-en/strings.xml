@@ -3,5 +3,4 @@
     <string name="app_name">CrazyFrog</string>
     <string name="btn_change_ticket">Change Raffle Tickets</string>
     <string name="btn_change_clover">Change Clover</string>
-    <string name="tv_change_tip">Clover: no more than 999999, raffle tickets: no more than 999.</string>
 </resources>

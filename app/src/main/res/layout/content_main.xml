@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/first_line"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/inputClover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:hint="@string/clover_hint"
+            android:inputType="number"
+            android:minWidth="190dp" />
+
+        <Button
+            android:id="@+id/btnChangeClover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/inputClover"
+            android:text="@string/btn_change_clover" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/first_line"
+        >
+
+        <EditText
+            android:id="@+id/inputTicket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:hint="@string/ticket_hint"
+            android:inputType="number"
+            android:minWidth="190dp" />
+
+        <Button
+            android:id="@+id/btnChangeTicket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@id/inputTicket"
+            android:text="@string/btn_change_ticket" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>

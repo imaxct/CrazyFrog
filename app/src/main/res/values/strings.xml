@@ -2,5 +2,6 @@
     <string name="app_name">疯狂青蛙</string>
     <string name="btn_change_clover">修改三叶草</string>
     <string name="btn_change_ticket">修改抽奖券</string>
-    <string name="tv_change_tip">三叶草最多999999, 奖券最多999.</string>
+    <string name="ticket_hint">0–999</string>
+    <string name="clover_hint">0–999999</string>
 </resources>
