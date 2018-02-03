@@ -11,34 +11,38 @@
         android:id="@+id/inputClover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
         android:width="200dp"
-        />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/btnChangeClover"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_change_clover"
-        app:layout_constraintLeft_toRightOf="@id/inputClover"
-        />
+        app:layout_constraintLeft_toRightOf="@id/inputClover" />
 
     <EditText
         android:id="@+id/inputTicket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:inputType="number"
         android:width="200dp"
+        android:inputType="number"
         app:layout_constraintTop_toBottomOf="@+id/inputClover" />
 
     <Button
         android:id="@+id/btnChangeTicket"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_change_ticket"
         android:layout_marginTop="8dp"
+        android:text="@string/btn_change_ticket"
         app:layout_constraintLeft_toRightOf="@id/inputTicket"
         app:layout_constraintTop_toBottomOf="@+id/inputClover" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_change_tip" />
 
 </android.support.constraint.ConstraintLayout>
